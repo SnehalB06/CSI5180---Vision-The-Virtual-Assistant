@@ -1,0 +1,491 @@
+<script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+<script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vision - The Virtual Assistant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+</head>
+
+<style>
+body{
+background-color: white;
+
+}
+.hero-body{
+background: #000046;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #1CB5E0, #000046);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #1CB5E0, #000046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+  .container{
+  color: white;
+  margin: 20px;
+  padding: 20px;
+}
+.serch_box {
+  color: black;
+  border: 1px solid black;
+  width:95%;
+  padding: 20px;
+}
+
+
+.float-container {
+    border: 0px solid #fff;
+    padding: 20px;
+}
+
+.float-child {
+    width: 50%;
+    float: left;
+    padding: 20px;
+    border: 0px solid black;
+}
+
+</style>
+<body>
+<section class="hero is-primary">
+        <div class="hero-body">
+                <h1 class="title" id="intro">
+                </h1>
+
+        </div>
+    </section>
+<div class="float-container">
+
+<div class="container">
+  <form action="https://www.google.com/search" method="get" target="_blank" id="search-form">
+    <input class= 'serch_box' name="q" type="text" placeholder="Search Google..." autocomplete="off" autofocus/>
+    <!-- <button type="button"><i class="fas fa-microphone"></i></button> -->
+  </form>
+    <p class="info"></p>
+
+</div>
+
+
+
+  <div class="float-child">
+    <div class="green">User Input: </div>
+      <p id ="ask-vision">ask </p>
+      <!--<button id="Clear" onclick=clear()> Clear</button>-->
+
+  </div>
+
+  <div class="float-child">
+    <div class="blue">Reply: </div>
+      <p id="content"> content </p>
+
+  </div>
+
+</div>
+
+</body>
+<script>
+function clear(){
+     c = document.getElementById("ask-vision");
+     c.innerHTML= ''
+}
+speaks = [
+  {
+    "name": "Alex",
+    "lang": "en-US"
+  },
+  {
+    "name": "Alice",
+    "lang": "it-IT"
+  },
+  {
+    "name": "Alva",
+    "lang": "sv-SE"
+  },
+  {
+    "name": "Amelie",
+    "lang": "fr-CA"
+  },
+  {
+    "name": "Anna",
+    "lang": "de-DE"
+  },
+  {
+    "name": "Carmit",
+    "lang": "he-IL"
+  },
+  {
+    "name": "Damayanti",
+    "lang": "id-ID"
+  },
+  {
+    "name": "Daniel",
+    "lang": "en-GB"
+  },
+  {
+    "name": "Diego",
+    "lang": "es-AR"
+  },
+  {
+    "name": "Ellen",
+    "lang": "nl-BE"
+  },
+  {
+    "name": "Fiona",
+    "lang": "en"
+  },
+  {
+    "name": "Fred",
+    "lang": "en-US"
+  },
+  {
+    "name": "Ioana",
+    "lang": "ro-RO"
+  },
+  {
+    "name": "Joana",
+    "lang": "pt-PT"
+  },
+  {
+    "name": "Jorge",
+    "lang": "es-ES"
+  },
+  {
+    "name": "Juan",
+    "lang": "es-MX"
+  },
+  {
+    "name": "Kanya",
+    "lang": "th-TH"
+  },
+  {
+    "name": "Karen",
+    "lang": "en-AU"
+  },
+  {
+    "name": "Kyoko",
+    "lang": "ja-JP"
+  },
+  {
+    "name": "Laura",
+    "lang": "sk-SK"
+  },
+  {
+    "name": "Lekha",
+    "lang": "hi-IN"
+  },
+  {
+    "name": "Luca",
+    "lang": "it-IT"
+  },
+  {
+    "name": "Luciana",
+    "lang": "pt-BR"
+  },
+  {
+    "name": "Maged",
+    "lang": "ar-SA"
+  },
+  {
+    "name": "Mariska",
+    "lang": "hu-HU"
+  },
+  {
+    "name": "Mei-Jia",
+    "lang": "zh-TW"
+  },
+  {
+    "name": "Melina",
+    "lang": "el-GR"
+  },
+  {
+    "name": "Milena",
+    "lang": "ru-RU"
+  },
+  {
+    "name": "Moira",
+    "lang": "en-IE"
+  },
+  {
+    "name": "Monica",
+    "lang": "es-ES"
+  },
+  {
+    "name": "Nora",
+    "lang": "nb-NO"
+  },
+  {
+    "name": "Paulina",
+    "lang": "es-MX"
+  },
+  {
+    "name": "Samantha",
+    "lang": "en-US"
+  },
+  {
+    "name": "Sara",
+    "lang": "da-DK"
+  },
+  {
+    "name": "Satu",
+    "lang": "fi-FI"
+  },
+  {
+    "name": "Sin-ji",
+    "lang": "zh-HK"
+  },
+  {
+    "name": "Tessa",
+    "lang": "en-ZA"
+  },
+  {
+    "name": "Thomas",
+    "lang": "fr-FR"
+  },
+  {
+    "name": "Ting-Ting",
+    "lang": "zh-CN"
+  },
+  {
+    "name": "Veena",
+    "lang": "en-IN"
+  },
+  {
+    "name": "Victoria",
+    "lang": "en-US"
+  },
+  {
+    "name": "Xander",
+    "lang": "nl-NL"
+  },
+  {
+    "name": "Yelda",
+    "lang": "tr-TR"
+  },
+  {
+    "name": "Yuna",
+    "lang": "ko-KR"
+  },
+  {
+    "name": "Yuri",
+    "lang": "ru-RU"
+  },
+  {
+    "name": "Zosia",
+    "lang": "pl-PL"
+  },
+  {
+    "name": "Zuzana",
+    "lang": "cs-CZ"
+  }
+];
+
+const searchForm = document.querySelector("#search-form");
+const searchFormInput = searchForm.querySelector("input"); // <=> document.querySelector("#search-form input");
+const info = document.querySelector(".info");
+var transcribe = [];
+var all_commands = [];
+msg = new SpeechSynthesisUtterance();
+msg.volume = 1; // 0 to 1
+msg.rate = 1; // 0.1 to 10
+msg.pitch = 1.5; // 0 to 2
+
+voice = speaks[5]; //47
+console.log(`Voice: ${voice.name} and Lang: ${voice.lang}`);
+msg.voiceURI = voice.name;
+msg.lang = voice.lang;
+
+// The speech recognition interface lives on the browser’s window object
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; // if none exists -> undefined
+const recognition = new SpeechRecognition();
+
+if(SpeechRecognition) {
+  console.log("Your Browser supports speech Recognition");
+
+
+  recognition.continuous = true;
+  // recognition.lang = "en-US";
+
+  searchForm.insertAdjacentHTML("beforeend", '<button type="button"><i class="fas fa-microphone"></i></button>');
+  searchFormInput.style.paddingRight = "100px";
+
+  const micBtn = searchForm.querySelector("button");
+  const micIcon = micBtn.firstElementChild;
+
+  micBtn.addEventListener("click", micBtnClick);
+
+  function micBtnClick() {
+    if(micIcon.classList.contains("fa-microphone")) { // Start Voice Recognition
+      msg.text  = "Hi I am Vision, Listening";
+      t = document.getElementById("intro");
+      t.innerHTML = msg.text;
+      speechSynthesis.speak(msg)
+      recognition.start(); // First time you have to allow access to mic!
+
+    }
+    else {
+      recognition.stop();
+    }
+  }
+
+  recognition.addEventListener("start", startSpeechRecognition); // <=> recognition.onstart = function() {...}
+  function startSpeechRecognition() {
+    micIcon.classList.remove("fa-microphone");
+    micIcon.classList.add("fa-microphone-slash");
+    searchFormInput.focus();
+    console.log("Voice activated, SPEAK");
+
+  }
+
+  recognition.addEventListener("end", endSpeechRecognition); // <=> recognition.onend = function() {...}
+  function endSpeechRecognition() {
+    micIcon.classList.remove("fa-microphone-slash");
+    micIcon.classList.add("fa-microphone");
+    searchFormInput.focus();
+    console.log("Speech recognition service disconnected");
+    msg.text  = "Speech recognition service disconnected";
+    speechSynthesis.speak(msg)
+  }
+
+  recognition.addEventListener("result", resultOfSpeechRecognition); // <=> recognition.onresult = function(event) {...} - Fires when you stop talking
+
+  function resultOfSpeechRecognition(event) {
+
+    const current = event.resultIndex;
+    const transcript = event.results[current][0].transcript;
+    console.log(transcript);
+    c = document.getElementById('ask-vision');
+    c.innerHTML = transcript;
+    if (transcript != ''| transcript != 'Hi' | transcript != 'I am Vision'| transcript != 'Listening' | transcript != 'Hello, I am Vision. I am Listening' | transcript != 'stop recording' | transcript != 'Speech recognition service disconnected') {
+    transcribe.push(transcript);
+    console.log("results ",transcribe);
+    commandGiven = transcript.toLowerCase().includes("tell me vision");
+    console.log("contains:",transcript.toLowerCase().includes("tell me vision"));
+    }
+
+    if(transcript.toLowerCase().trim()==="stop recording") {
+      recognition.stop();
+    }
+    else if(!searchFormInput.value) {
+
+      searchFormInput.value = transcript;
+    }
+    else {
+      if(transcript.toLowerCase().trim()==="go") {
+        searchForm.submit();
+      }
+      else if(transcript.toLowerCase().trim()==="reset input") {
+        searchFormInput.value = "";
+      }
+      else {
+        all_commands.push(transcript);
+        console.log("In vision brain");
+        searchFormInput.value = transcript;
+        callFlask(transcript);
+      }
+    }
+    // searchFormInput.value = transcript;
+    // searchFormInput.focus();
+    // setTimeout(() => {
+    //   searchForm.submit();
+    // }, 500);
+  }
+
+  info.textContent = 'Voice Commands: "stop recording","tell me vision", "reset input", "go"';
+}
+else {
+  console.log("Your Browser does not support speech Recognition");
+  info.textContent = "Your Browser does not support Speech Recognition";
+}
+
+
+const uploadURL = "{{ url_for('about')}}";
+function callFlask(x)
+    {
+        let content = document.getElementById("content");
+        const transcript = searchFormInput.value; // <=> document.querySelector("#search-form input");
+        console.log("transcribe",x);
+        console.log("transcript in call flask ",transcript);
+        console.log("command",transcript);
+        fetch(uploadURL, {
+              method: "POST",
+              body: JSON.stringify(transcript)
+              })
+        .then(response => response.json())
+        .then(result => {
+        console.log("result",result);
+        if (result['weather_flag'] ==1 ){
+          SpeechSynthesisWeather(result['weather']);
+        }
+        else if (result['stock_flag'] ==1 ){
+          SpeechSynthesisStocks(result['stocks']);
+        }
+        else if (result['bus_flag'] ==1 ){
+          SpeechSynthesisBus(result['buses']);
+        }
+        else if (result['news_flag'] ==1 ){
+          SpeechSynthesisNews(result["news"]);
+        }
+        else if (result['chat_flag'] ==1 ){
+          SpeechSynthesisChat(result["chat"]);
+        }
+
+
+             })
+             .catch(error => {
+              console.log('Error:', error);
+             })
+
+    };
+
+  function SpeechSynthesisChat(resp){
+  console.log(resp);
+  resp = JSON.stringify(resp);
+  const myArray = resp.split("\n");
+  console.log("myArray",myArray);
+  let content = document.getElementById("content");
+  msg.text = resp;
+  content.innerHTML = msg.text  ;
+  recognition.abort();
+  speechSynthesis.speak(msg);
+
+  }
+
+
+  function SpeechSynthesisWeather(resp){
+  console.log(resp);
+  let content = document.getElementById("content")
+  msg.text = 'Temperature in '+resp.city+' is '+resp.Temperature + 'with wind speed'+resp.WindSpeed+' and '+resp.WeatherDescription +' Conditions'
+  content.innerHTML = msg.text  ;
+  speechSynthesis.speak(msg);
+
+  }
+
+  function SpeechSynthesisBus(resp){
+  console.log(resp);
+  let content = document.getElementById("content")
+  msg.text = 'Here are some Bus Timings'
+  content.innerHTML =   resp ;
+  speechSynthesis.speak(msg);
+
+  }
+
+  function SpeechSynthesisNews(resp){
+  console.log(typeof resp );
+  let content = document.getElementById("content")
+  msg.text = 'Here are some results: '
+  content.innerHTML = resp[0] ;
+  speechSynthesis.speak(msg);
+
+  }
+
+
+function SpeechSynthesisStocks(resp){
+  console.log(resp);
+  let content = document.getElementById("content")
+  msg.text = 'Stock Price of '+resp.Company_name+' is '+resp.price + 'with change point at '+resp.change_point
+  content.innerHTML = msg.text  ;
+  speechSynthesis.speak(msg);
+  }
+
+</script>
